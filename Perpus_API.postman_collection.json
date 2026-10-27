@@ -1,0 +1,589 @@
+{
+  "info": {
+    "_postman_id": "6abdfe94-0928-4bc5-8059-20ff95817e12",
+    "name": "Perpus_API",
+    "description": "# 📚 Dokumentasi API Perpustakaan Digital (Perpus_API)\n\nSelamat datang di dokumentasi API Perpustakaan Digital. API ini digunakan untuk mengelola autentikasi pengguna, katalog buku, dan transaksi peminjaman.\n\n## 🚀 Quick Start\n\n1. Jalankan request **Auth -> Login** untuk mendapatkan `token` akses.\n    \n2. Salin token dari respons server.\n    \n3. Tempelkan token tersebut ke tab **Authorization** (pilih tipe **Bearer Token**) pada endpoint yang membutuhkan autentikasi (folder _Buku_ dan _Peminjaman_).\n    \n\n## 📌 Rincian Endpoint\n\n- **Auth**:\n    \n    - `POST` Register\n        \n    - `POST` Login\n        \n    - `POST` Logout\n        \n- **Buku**:\n    \n    - `GET` Pencarian buku\n        \n    - `GET` Daftar Buku\n        \n- **Peminjaman**:\n    \n    - `GET` Daftar Peminjaman\n        \n    - `POST` Tambah Peminjaman",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58884153",
+    "_collection_link": "https://go.postman.co/collection/58884153-6abdfe94-0928-4bc5-8059-20ff95817e12?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Aidiel Penguji\",\r\n  \"email\": \"aidiel.uji@gmail.com\",\r\n  \"password\": \"password123\",\r\n  \"password_confirmation\": \"password123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/register",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"aidiel.uji@gmail.com\",\r\n  \"password\": \"password123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/login",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK - Login Sukses",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"aidiel3@example.com\",\r\n    \"password\": \"password123\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/login",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.5.5"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 26 Oct 2026 08:22:57 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"message\": \"Login berhasil\",\n  \"access_token\": \"11|pmlEKTcJqtqZSPTkFlChH8yFqza9EKlwLlppuNE85ddc9290\",\n  \"token_type\": \"Bearer\"\n}"
+            },
+            {
+              "name": "422 Unprocessable Content - Kredensial Salah",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"aidiel3@example.com\",\r\n    \"password\": \"password12\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/login",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Unprocessable Content",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.5.5"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 26 Oct 2026 08:23:53 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"message\": \"Kredensial yang diberikan salah.\",\n  \"errors\": {\n    \"email\": [\n      \"Kredensial yang diberikan salah.\"\n    ]\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "7|jowBWvVAFH7d14GtaUnQFiOsAk4OCv6wkbrDiwFv6190f80f",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/logout",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Buku",
+      "item": [
+        {
+          "name": "Pencarian buku",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer 2|4EDHefvWqLV4Osxaek3e6v2QAOpB0atpH15AUGl0765258d8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/books?sort_by=title&direction=asc",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "books"
+              ],
+              "query": [
+                {
+                  "key": "sort_by",
+                  "value": "title"
+                },
+                {
+                  "key": "direction",
+                  "value": "asc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Daftar Buku",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "8|2iJWcutnWhf0T39InHUsJeOOg4oaetOBKxV0mvxAc30d7e6e",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/books",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "books"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK - Berhasil Ambil Data Buku",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/books",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "books"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.5.5"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 27 Oct 2026 04:20:16 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"current_page\": 1,\n  \"data\": [\n    {\n      \"id\": 1,\n      \"title\": \"Pemrograman Laravel untuk Pemula\",\n      \"genre\": \"Teknologi\",\n      \"stock\": 0,\n      \"created_at\": \"2026-10-24T08:10:01.000000Z\",\n      \"updated_at\": \"2026-10-24T11:41:57.000000Z\"\n    },\n    {\n      \"id\": 2,\n      \"title\": \"Belajar Dasar JavaScript & DOM\",\n      \"genre\": \"Teknologi\",\n      \"stock\": 7,\n      \"created_at\": \"2026-10-24T08:10:01.000000Z\",\n      \"updated_at\": \"2026-10-24T11:20:26.000000Z\"\n    },\n    {\n      \"id\": 3,\n      \"title\": \"Arsitektur RESTful API dengan PHP\",\n      \"genre\": \"Teknologi\",\n      \"stock\": 4,\n      \"created_at\": \"2026-10-24T08:10:01.000000Z\",\n      \"updated_at\": \"2026-10-24T08:47:24.000000Z\"\n    },\n    {\n      \"id\": 4,\n      \"title\": \"Pulang Pergi oleh Tere Liye\",\n      \"genre\": \"Fiksi\",\n      \"stock\": 12,\n      \"created_at\": \"2026-10-24T08:10:01.000000Z\",\n      \"updated_at\": \"2026-10-24T08:10:01.000000Z\"\n    },\n    {\n      \"id\": 5,\n      \"title\": \"Bumi Manusia - Pramoedya Ananta Toer\",\n      \"genre\": \"Fiksi\",\n      \"stock\": 4,\n      \"created_at\": \"2026-10-24T08:10:01.000000Z\",\n      \"updated_at\": \"2026-10-24T09:55:55.000000Z\"\n    },\n    {\n      \"id\": 6,\n      \"title\": \"Filosofi Teras - Henry Manampiring\",\n      \"genre\": \"Fiksi\",\n      \"stock\": 6,\n      \"created_at\": \"2026-10-24T08:10:01.000000Z\",\n      \"updated_at\": \"2026-10-24T08:10:01.000000Z\"\n    },\n    {\n      \"id\": 7,\n      \"title\": \"Sejarah Singkat Umat Manusia (Sapiens)\",\n      \"genre\": \"Sains\",\n      \"stock\": 6,\n      \"created_at\": \"2026-10-24T08:10:01.000000Z\",\n      \"updated_at\": \"2026-10-24T11:20:26.000000Z\"\n    },\n    {\n      \"id\": 8,\n      \"title\": \"Fisika Kuantum untuk Orang Awam\",\n      \"genre\": \"Sains\",\n      \"stock\": 4,\n      \"created_at\": \"2026-10-24T08:10:01.000000Z\",\n      \"updated_at\": \"2026-10-24T08:10:01.000000Z\"\n    }\n  ],\n  \"first_page_url\": \"http://127.0.0.1:8000/api/books?page=1\",\n  \"from\": 1,\n  \"last_page\": 2,\n  \"last_page_url\": \"http://127.0.0.1:8000/api/books?page=2\",\n  \"links\": [\n    {\n      \"url\": null,\n      \"label\": \"&laquo; Previous\",\n      \"page\": null,\n      \"active\": false\n    },\n    {\n      \"url\": \"http://127.0.0.1:8000/api/books?page=1\",\n      \"label\": \"1\",\n      \"page\": 1,\n      \"active\": true\n    },\n    {\n      \"url\": \"http://127.0.0.1:8000/api/books?page=2\",\n      \"label\": \"2\",\n      \"page\": 2,\n      \"active\": false\n    },\n    {\n      \"url\": \"http://127.0.0.1:8000/api/books?page=2\",\n      \"label\": \"Next &raquo;\",\n      \"page\": 2,\n      \"active\": false\n    }\n  ],\n  \"next_page_url\": \"http://127.0.0.1:8000/api/books?page=2\",\n  \"path\": \"http://127.0.0.1:8000/api/books\",\n  \"per_page\": 8,\n  \"prev_page_url\": null,\n  \"to\": 8,\n  \"total\": 9\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Peminjaman",
+      "item": [
+        {
+          "name": "Daftar Peminjaman",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer 1|u46At1XGhrQUNEaHzaCpCdspmWnBuUuJCkmNROYk3b9779d4"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"borrower_name\": \"Budi\",\r\n    \"phone_number\": \"081234567890\",\r\n    \"due_date\": \"2026-11-01\",\r\n    \"items\": [\r\n        {\r\n            \"book_id\": 1,\r\n            \"quantity\": 2\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/transactions",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "transactions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Tambah Peminjaman",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "2iJWcutnWhf0T39InHUsJeOOg4oaetOBKxV0mvxAc30d7e6e",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"borrower_name\": \"Budi Santoso\",\r\n    \"phone_number\": \"081234567890\",\r\n    \"due_date\": \"2026-11-01\",\r\n    \"items\": [\r\n        {\r\n            \"book_id\": 1,\r\n            \"quantity\": 1\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/transactions",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "transactions"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "201 Created - Peminjaman Berhasil",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"borrower_name\": \"Budi Santoso\",\r\n    \"phone_number\": \"081234567890\",\r\n    \"due_date\": \"2026-11-01\",\r\n    \"items\": [\r\n        {\r\n            \"book_id\": 2,\r\n            \"quantity\": 1\r\n        }\r\n    ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/transactions",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "transactions"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.5.5"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 27 Oct 2026 04:23:38 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Peminjaman berhasil dicatat dan stok telah dikurangi\",\n  \"data\": {\n    \"borrower_name\": \"Budi Santoso\",\n    \"phone_number\": \"081234567890\",\n    \"due_date\": \"2026-11-01\",\n    \"updated_at\": \"2026-10-27T04:23:38.000000Z\",\n    \"created_at\": \"2026-10-27T04:23:38.000000Z\",\n    \"id\": 10,\n    \"details\": [\n      {\n        \"id\": 13,\n        \"transaction_id\": 10,\n        \"book_id\": 2,\n        \"quantity\": 1,\n        \"created_at\": \"2026-10-27T04:23:38.000000Z\",\n        \"updated_at\": \"2026-10-27T04:23:38.000000Z\",\n        \"book\": {\n          \"id\": 2,\n          \"title\": \"Belajar Dasar JavaScript & DOM\",\n          \"genre\": \"Teknologi\",\n          \"stock\": 6,\n          \"created_at\": \"2026-10-24T08:10:01.000000Z\",\n          \"updated_at\": \"2026-10-27T04:23:38.000000Z\"\n        }\n      }\n    ]\n  }\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": ""
+    }
+  ]
+}
